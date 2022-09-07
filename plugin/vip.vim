@@ -50,14 +50,14 @@ function s:PasteEC(blockType, blockSubstitute, yankBlock)
 
     let nbOfLines = len(newBlock) - 1
     echo newBlock[nbOfLines-1]
-    " call Debug("PasteEC: newBlock = " . newBlock[nbOfLines-1]  ) 
+    " call Debug("PasteEC: newBlock = " . newBlock[nbOfLines-1]  )
     if ((a:blockType ==? "entity") && (a:blockSubstitute ==? "component"))
         let newBlock[nbOfLines-1] = substitute(newBlock[nbOfLines-1], "end.*", "end component;", "g")
     endif
     if ((a:blockType ==? "component") && (a:blockSubstitute ==? "entity"))
         let newBlock[nbOfLines-1] = substitute(newBlock[nbOfLines-1], "end.*", "end entity;", "g")
     endif
-    " call Debug("PasteEC: newBlock# = " . newBlock[nbOfLines-1]  ) 
+    " call Debug("PasteEC: newBlock# = " . newBlock[nbOfLines-1]  )
     call append(line("."), newBlock)
     return 1
 endfunction
@@ -323,7 +323,7 @@ function s:PasteECI(instanceNumb, instPrefix, instSuffix, sigPrefix, yankBlock)
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Paste a component / entity as a Verilog instance of component 
+" Paste a component / entity as a Verilog instance of component
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function s:PasteVi(instanceNumb, instPrefix, instSuffix, sigPrefix, yankBlock)
     let instanceBlock = []
@@ -656,7 +656,7 @@ endfor
 
 """""""""""""" Yank
 if !hasmapto('<Plug>SpecialVHDLAction')
-    map <unique> <leader>y <Plug>SpecialVHDLYank
+    map <unique> <leader>vy <Plug>SpecialVHDLYank
 endif
 noremap <unique> <script> <Plug>SpecialVHDLYank <SID>Yank
 noremap <SID>Yank :call <SID>Action("yank")<CR>
@@ -667,7 +667,7 @@ endif
 
 """""""""""""" Paste as same
 if !hasmapto('<Plug>SpecialVHDLPaste')
-    map <unique> <leader>p <Plug>SpecialVHDLPaste
+    map <unique> <leader>vp <Plug>SpecialVHDLPaste
 endif
 noremap <unique> <script> <Plug>SpecialVHDLPaste <SID>Paste
 noremap <SID>Paste :call <SID>Action("paste")<CR>
@@ -678,7 +678,7 @@ endif
 
 """"""""""""""" Paste as entity
 if !hasmapto('<Plug>SpecialVHDLPasteEntity')
-    map <unique> <leader>e <Plug>SpecialVHDLPasteEntity
+    map <unique> <leader>ve <Plug>SpecialVHDLPasteEntity
 endif
 noremap <unique> <script> <Plug>SpecialVHDLPasteEntity <SID>PasteEntity
 noremap <SID>PasteEntity :call <SID>Action("entity")<CR>
@@ -689,7 +689,7 @@ endif
 
 """"""""""""""" Paste as component
 if !hasmapto('<Plug>SpecialVHDLPasteComponent')
-    map <unique> <leader>c <Plug>SpecialVHDLPasteComponent
+    map <unique> <leader>vc <Plug>SpecialVHDLPasteComponent
 endif
 noremap <unique> <script> <Plug>SpecialVHDLPasteComponent <SID>PasteComponent
 noremap <SID>PasteComponent :call <SID>Action("component")<CR>
@@ -700,7 +700,7 @@ endif
 
 """"""""""""""" Paste as instance
 if !hasmapto('<Plug>SpecialVHDLPasteInstance')
-    map <unique> <leader>i <Plug>SpecialVHDLPasteInstance
+    map <unique> <leader>vi <Plug>SpecialVHDLPasteInstance
 endif
 noremap <unique> <script> <Plug>SpecialVHDLPasteInstance <SID>PasteInstance
 noremap <SID>Paste Instance:call <SID>Action("instance")<CR>
@@ -711,7 +711,7 @@ endif
 
 """"""""""""""" Paste as vinstance
 if !hasmapto('<Plug>SpecialVHDLPasteVinstance')
-    map <unique> <leader>m <Plug>SpecialVHDLPasteVinstance
+    map <unique> <leader>vv <Plug>SpecialVHDLPasteVinstance
 endif
 noremap <unique> <script> <Plug>SpecialVHDLPasteVinstance <SID>PasteVinstance
 noremap <SID>Paste Vinstance:call <SID>Action("vinstance")<CR>
